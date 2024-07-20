@@ -1,0 +1,56 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseLL(ListNode* &head){
+        ListNode* prev=NULL;
+        ListNode* temp=NULL;
+        ListNode* curr=head;
+        
+        while(curr!=NULL){
+            temp=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=temp;
+
+        }
+        return prev;
+    }
+    int getDecimalValue(ListNode* head) {
+
+        //FIRST SOLUTION INVOLVING REVERSING THE LINKED LIST AND THEN TRAVERSING IT AGAIN WHILE CONVERTING THE NUMBER TO DECIMAL.
+
+        // head=reverseLL(head);
+        // ListNode* temp=head;
+        // int decimal=0;
+        // int i=0;
+        // while(temp!=NULL){
+        //     decimal+=(temp->val*pow(2,i));
+        //     temp=temp->next;
+        //     i++;
+
+        // }
+        // return decimal;
+
+        // ANOTHER SOLUTION TO THIS PROBLEM.  A SIMPLE SOLUTION IN FACT BASED ON OBSERVATION AND BASIC MATHS
+        ListNode* temp=head;
+        int decimal=0;
+        while(temp!=NULL){
+            decimal=decimal*2+temp->val;
+            temp=temp->next;
+        }
+        return decimal;
+
+
+
+        
+    }
+};
